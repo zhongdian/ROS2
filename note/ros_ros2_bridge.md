@@ -10,16 +10,16 @@ For efficiency reasons, topics will only be bridged when matching publisher-subs
 出于效率原因，只有当桥接器两侧的主题的匹配发布者 - 订阅者对处于活动状态时，才会桥接主题。请注意，在rostopic echo使用桥接主题之前，必须已存在订户，以便echo确定消息类型，然后创建自己的订户。您可以使用该--bridge-all-2to1-topics选项将所有ROS 2主题桥接到ROS 1，以便即使没有匹配的ROS 1订阅者rostopic list，rqt也可以查看主题等工具。运行ros2 run ros1_bridge dynamic_bridge -- --help以获取更多选项。
 https://github.com/ros2/ros1_bridge/blob/master/README.md
 
-安装ros2
+#安装ros2
 下载ros1_bridge源码到工作空间
 用colcon编译除ros1_bridge的其他包：
 colcon build --symlink-install --packages-skip ros1_bridge
 配置ros1环境：source /opt/ros/melodic/setup.bash
 配置ros2环境： . /opt/ros/dashing/local_setup.bash
-#如果有一个ROS1覆盖环境： . <install-space-to-ros1-overlay-ws>/setup.bash
-#如果有一个ROS2覆盖环境： . <install-space-to-ros2-overlay-ws>/local_setup.bash
+~~如果有一个ROS1覆盖环境： . <install-space-to-ros1-overlay-ws>/setup.bash~~
+~~如果有一个ROS2覆盖环境： . <install-space-to-ros2-overlay-ws>/local_setup.bash~~
 再编译ros1_bridge: colcon build --symlink-install --packages-select ros1_bridge --cmake-force-configure
-注意：如果编译报错：not found launch_testing_ament_cmake ,去github上下载ros2/launch里面的文件到工作空间中：git clone https://github.com/ros2/launch.git，从头开始编译，即可解决
+**注意：如果编译报错：not found launch_testing_ament_cmake ,去github上下载ros2/launch里面的文件到工作空间中：git clone https://github.com/ros2/launch.git，从头开始编译，即可解决**
 
 
 shell A:
@@ -34,7 +34,8 @@ shell B:
 
 配置完成。
 
-实例1a：ROS 1 talker and ROS 2 listener
+#实例
+*实例1a：ROS 1 talker and ROS 2 listener
 shell C:
 配置ros1环境： . /opt/ros/melodic/setup.bash
 运行ros1节点： rosrun rospy_tutorials talker
@@ -42,7 +43,7 @@ shell D:
 配置ros2环境：. /opt/ros/dashing/setup.bash
 运行ros2节点： ros2 run demo_nodes_cpp listener
 
-实例1b：ROS 2 talker and ROS 1 listener
+*实例1b：ROS 2 talker and ROS 1 listener
 shell C：
 配置ros1环境： . /opt/ros/melodic/setup.bash
 运行ros1节点： rosrun roscpp_tutorials listener
@@ -50,7 +51,7 @@ shell D:
 配置ros2环境：. /opt/ros/dashing/setup.bash
 运行ros2节点： ros2 run demo_nodes_py talker
 
-实例2：run the bridge and exchange images
+*实例2：run the bridge and exchange images
 shell C：
 配置ros1环境： . /opt/ros/melodic/setup.bash
 运行ros1节点： rqt_image_view /image
@@ -62,10 +63,10 @@ shell E:
 发布消息： rostopic pub -r 1 /flip_image std_msgs/Bool "{data: true}"
          rostopic pub -r 1 /flip_image std_msgs/Bool "{data: false}"
 
-实例3： run the bridge for AddTwoInts service
+*实例3： run the bridge for AddTwoInts service
 shell C:
 配置ros1环境： . /opt/ros/melodic/setup.bash
-# export ROS_MASTER_URI=http://localhost:11311
+～～export ROS_MASTER_URI=http://localhost:11311～～
 运行ros1节点： rosrun roscpp_tutorials add_two_ints_server
 shell D:
 配置ros2环境：. /opt/ros/dashing/setup.bash

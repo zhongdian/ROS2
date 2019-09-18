@@ -66,7 +66,7 @@ shell E:
 *实例3： run the bridge for AddTwoInts service
 shell C:
 配置ros1环境： . /opt/ros/melodic/setup.bash
-～～export ROS_MASTER_URI=http://localhost:11311～～
+~~export ROS_MASTER_URI=http://localhost:11311~~
 运行ros1节点： rosrun roscpp_tutorials add_two_ints_server
 shell D:
 配置ros2环境：. /opt/ros/dashing/setup.bash

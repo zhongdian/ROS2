@@ -21,9 +21,9 @@ colcon build --symlink-install --packages-skip ros1_bridge
 
 * 配置ros2环境： . /opt/ros/dashing/local_setup.bash
 
-~~如果有一个ROS1覆盖环境： . <install-space-to-ros1-overlay-ws>/setup.bash~~
+* ~~如果有一个ROS1覆盖环境： . <install-space-to-ros1-overlay-ws>/setup.bash~~
 
-~~如果有一个ROS2覆盖环境： . <install-space-to-ros2-overlay-ws>/local_setup.bash~~
+* ~~如果有一个ROS2覆盖环境： . <install-space-to-ros2-overlay-ws>/local_setup.bash~~
 
 * 再编译ros1_bridge: colcon build --symlink-install --packages-select ros1_bridge --cmake-force-configure
 

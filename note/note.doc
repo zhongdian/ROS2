@@ -11,6 +11,9 @@ apt show	apt-cache show	显示安装细节
 
 
 git checkout 检查克隆分支
+vscode配置git免密上传
+打开隐藏文件夹.git里面的config
+将url中的https://github.com/zhongdian/ROS2.git更换为https://zhongdian:xlygh2718134336@github.com/zhongdian/ROS2.git
 
 colcon build --symlink-install 编译包
 colcon test 测试包

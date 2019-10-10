@@ -15,6 +15,7 @@ vscode配置git免密上传
 打开隐藏文件夹.git里面的config
 将url中的https://github.com/zhongdian/ROS2.git更换为https://zhongdian:xlygh2718134336@github.com/zhongdian/ROS2.git
 
+ROS1循环发布消息 rostopic pub –r rate-in-hz topic-name message-type message-content 
 colcon build --symlink-install 编译包
 colcon test 测试包
 
@@ -25,3 +26,114 @@ If you want to run a single particular test from a package:
 colcon test --packages-select YOUR_PKG_NAME --ctest-args -R YOUR_TEST_IN_PKG
 markdown的写法：https://www.cnblogs.com/liugang-vip/p/6337580.html
 https://www.bbsmax.com/A/E35pglrgJv/
+
+1.安装并添加源
+sudo gedit /etc/apt/sources.list
+更新下
+sudo apt-get update
+添加 sources.list，如
+sudo sh -c '. /etc/lsb-release && echo "deb http://mirrors.ustc.edu.cn/ros/ubuntu/ $DISTRIB_CODENAME main" > /etc/apt/sources.list.d/ros-latest.list'
+添加 keys，如
+sudo apt-key adv --keyserver hkp://pool.sks-keyservers.net --recv-key 421C365BD9FF1F717815A3895523BAEEB01FA116
+
+2.安装某个指定的ROS软件包
+sudo apt-get install ros-indigo-PACKAGE
+
+3.要查找可用软件包:
+apt-cache search ros-indigo
+查看软件包列表和定位软件包:
+rospack list
+查看软件包目录下的文件:
+rosls package-name
+将当前目录切换至此软件包目录:
+roscd package-name
+
+4.环境变量设置
+ROS环境变量都能够自动配置好（即添加到bash会话中）,配置好后，source一下.
+$echo "source /opt/ros/indigo/setup.bash" >> ~/.bashrc
+$source ~/.bashrc
+只改变当前终端下的环境变量:
+source /opt/ros/indigo/setup.bash
+
+ 5.创建并构建工作空间
+创建一个工作空间：
+mkdir -p ~/catkin_ws/src
+转到已创建好的工作空间之下:
+cd ~/catkin_ws/src
+尽管这个空间是空的，我们仍然可以构建（ build）它:
+cd ~/catkin_ws/
+catkin_make
+接下来首先source一下新生成的setup.*sh文件：
+source devel/setup.bash
+要想保证工作空间已配置正确需确保ROS_PACKAGE_PATH环境变量包含你的工作空间目录，采用以下命令查看
+ echo $ROS_PACKAGE_PATH
+
+
+6.获取软件包的有关信息
+rospack find [包名称]
+该选项可以返回软件包的路径信息
+roscd [本地包名称[/子目录]]
+直接切换工作目录到某个软件包或者软件包集当中
+pwd来输出当前工作目录
+pwd
+切换到ROS保存日记文件的目录下
+roscd log
+直接按软件包的名称而不是绝对路径执行ls命令（罗列目录）
+rosls [本地包名称[/子目录]]
+示例：
+$ rosls roscpp_tutorials
+应输出：
+cmake  package.xml  srv
+Tab 自动完成输入
+$roscd roscpp_tut<< 现在请按TAB键 >>
+命令行中应该会自动补充剩余部分：
+$ roscd roscpp_tutorials/
+查看ubuntu版本
+cat /etc/issue
+
+7.查看消息类型：
+rosmsg show message-type-name
+
+8.用命令行发布消息：
+rostopic pub –r rate-in-hz topic-name message-type message-content
+重复地按照指定的频率给指定的话题发布指定的消息如：rostopic pub –r 1 /turtle1/cmd_vel geometry_msgs/Twist ’[2,0,0]’ ’[0,0,0]’
+前面三个数字表示期望的位移线速度， 后面三个数字表示期望的角速度。用单引号（ ’…’）和中括号（ […]）组织这些数值赋给它们对应的两个顶层复合域变量。-r来指定话题以频率模式发布消息。一次性发布的模式（ -1“虚线后为数字 1”）和特别的锁存模式（ -l“虚线后为字母 L 的小写”）。
+
+9. YAML 是"YAML Ain't a Markup Language"（ YAML 不是一种置标语言）的递归缩写。
+
+10.turtlesim + Color turtlesi ⇒ m/Color
+    功能包名  + 类型名称 ====消息类型
+
+11.问题检查：roswtf
+这条命令会进行全面而深入的检测，包括检测你的环境变量、安装的文件以及运行的节点。例如， roswtf 将会检测在安装过程中 rosdep 初始化是否完成， 任何节点是否出现了意外的挂起或者终止， 以及活跃的节点是否正确地和其他节点相连接等。可惜的是，由 roswtf 检测的完整列表只能在 Python 源码中才能找到。
+
+12.所有软件都被组织为软件包的形式,ROS软件包是一组用于实现特定功能的相关文件的集合，包括可执行文件和其他支持文件。比如说，我们前面使用的两个可执行文件 turtlesim_node 和turtle_teleop_key 都属于 turtlesim 包。每个程序包由一个清单文件（ 文件名为 package.xml）定义. CMakeLists.txt，是一个Cmake的脚本文件。
+
+
+13.创建功能包:
+catkin_create_pkg package-name
+ROS包的命名遵循一个命名规范，只允许使用小写字母、数字和下划线，而且首字符必须是一个小写字母。
+
+14.ROS程序包的编写。
+《机器人操作系统浅析》p52-p61
+创建工作区————创建功能包————编写ROS程序（Hello.cpp)————编译Hello程（声明依赖库，声明可执行文件）————编译工作区————执行名为 setup.bash 的脚本文件（source devel/setup.bash）————执行hello程序（rosrun agitr hello）.
+
+15.发布者程序
+如何发送随机生成的速度指令到一个turtlesim海龟，使它漫无目的地巡游。
+ps:当引用 C++代码中的消息类时，你将会使用双分号（ ::）来区分开包名和类型名，双分号也称为范围解析运算符.
+每一个日志消息都被发布到话题/rosout 上.
+
+16.直接查看消息内容:
+rostopic echo /rosout
+或者：rqt_console
+
+17.roscore和roslaunch运行时都会检查和监测已经存在的日志的大小，并会在日志文件大小超过 1GB时提醒你。
+查看当前账户中被ROS日志消耗的硬盘空间：
+rosclean check
+删除所有已经存在的日志:
+rosclean purge
+通过图形界面设置日志级别:
+rqt_logger_level
+
+
+18.必应搜 ROS Cheat Sheet ，可以下载ROS的一些常用命令的pdf文件。

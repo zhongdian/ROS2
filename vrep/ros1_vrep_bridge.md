@@ -23,8 +23,8 @@ git clone https://github.com/CoppeliaRobotics/vrep_skeleton_msg_and_srv.git
 git clone https://github.com/CoppeliaRobotics/vrep_plugin_skeleton.git  
 git clone --recursive https://github.com/CoppeliaRobotics/v_repExtRosInterface.git  
 ```
-或者
-`git clone https://github.com/zhongdian/ROS2/tree/master/vrep/vrep_ros_interface`
+或者  
+`git clone https://github.com/zhongdian/ROS2/tree/master/vrep/vrep_ros_interface`  
 ##　返回到工作空间 
 在该目录下打开终端：　　 
 配置ros1环境：  

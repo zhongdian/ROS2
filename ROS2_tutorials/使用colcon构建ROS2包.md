@@ -3,7 +3,8 @@
 ## 安装
 安装colcon  
 `sudo apt install python3-colcon-common-extensions`  
-安装ROS2  
+安装ROS2 
+根据[官网](https://index.ros.org/doc/ros2/Installation/Dashing/Linux-Install-Debians/) 教程安装即可。
 
 # 基础
 
@@ -19,7 +20,7 @@
 `colcon build --symlink-install`
 ## 测试
 对构建的软件包进行测试  
-`colcon test  
+`colcon test`  
 ## 源环境
 使用编译的软件包前，必须将其导入配置环境  
 `. install/setup.bash`

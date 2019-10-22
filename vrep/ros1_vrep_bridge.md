@@ -25,8 +25,9 @@ git clone --recursive https://github.com/CoppeliaRobotics/v_repExtRosInterface.g
 ```
 或者  
 `git clone https://github.com/zhongdian/ROS2/tree/master/vrep/vrep_ros_interface`  
-##　返回到工作空间 
-在该目录下打开终端：　　 
+
+## 返回到工作空间 
+在该目录下打开终端：  
 配置ros1环境：  
 `. /opt/ros/melodic/setup.bash`   
 导入vrep路径：  

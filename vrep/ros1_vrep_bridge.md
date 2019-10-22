@@ -1,4 +1,5 @@
-# ROS+catkin安装
+# Ubuntu 18.04下ROS1 melodic+catkin安装
+根据[官网](http://wiki.ros.org/melodic/Installation)教程来即可。
 
 # vrep安装
 
@@ -9,24 +10,28 @@
 ## 运行vrep
 
 下载完解压后，在终端运行如下命令即可启动： 
-
-cd vrep  
-
-. /vrep.sh
+`cd vrep`  
+`. /vrep.sh`  
 
 # 配置RosInterface
 
-创建一个单独的工作空间将以下4个功能包下载的src文件夹中：
-
-$ git clone https://github.com/CoppeliaRobotics/ros_bubble_rob2
-$ git clone https://github.com/CoppeliaRobotics/vrep_skeleton_msg_and_srv.git
-$ git clone https://github.com/CoppeliaRobotics/vrep_plugin_skeleton.git
-$ git clone --recursive https://github.com/CoppeliaRobotics/v_repExtRosInterface.git
-
-返回到工作空间  
-配置ros1环境： . /opt/ros/melodic/setup.bash  
-导入vrep路径： export VREP_ROOT=~/vrep  
-进行编译：catkin_make  
+## 创建一个单独的工作空间  
+将以下4个功能包下载的src文件夹中：
+```
+git clone https://github.com/CoppeliaRobotics/ros_bubble_rob2  
+git clone https://github.com/CoppeliaRobotics/vrep_skeleton_msg_and_srv.git  
+git clone https://github.com/CoppeliaRobotics/vrep_plugin_skeleton.git  
+git clone --recursive https://github.com/CoppeliaRobotics/v_repExtRosInterface.git  
+```
+##　返回到工作空间 
+在该目录下打开终端：　　 
+配置ros1环境：  
+`. /opt/ros/melodic/setup.bash`   
+导入vrep路径：  
+`export VREP_ROOT=~/vrep`  
+进行编译：  
+`catkin_make`  
+　　
 将工作空间下/dev/lib文件夹中的libv_repExtRosSkeleton.so文件复制到vrep的根目录中。即可完成配置。
 
 

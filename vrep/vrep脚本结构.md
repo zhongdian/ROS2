@@ -89,7 +89,7 @@ function sysCall_actuation()
     end
 end
 ```
-#　5. 清理函数（非必须函数）:  
+# 5. 清理函数（非必须函数）:  
 ```
 function sysCall_cleanup()
     if not pluginNotFound then

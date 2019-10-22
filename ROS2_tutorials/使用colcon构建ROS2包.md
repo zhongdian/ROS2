@@ -3,7 +3,7 @@
 ## 安装
 安装colcon  
 `sudo apt install python3-colcon-common-extensions`  
-安装ROS2 
+安装ROS2  
 根据[官网](https://index.ros.org/doc/ros2/Installation/Dashing/Linux-Install-Debians/) 教程安装即可。
 
 # 基础

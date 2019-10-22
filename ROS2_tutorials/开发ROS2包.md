@@ -1,9 +1,9 @@
 # 前提
 已安装ROS2(dashing)+colcon  
 # 创建一个工作空间  
-在工作目录下（例：~/ros2_ws/src）
+在工作目录下（例：~/ros2_ws/src）  
 `ros2 pkg create <pkg-name> --dependencies [deps]`  
-显示创建C++包　　
+显示创建C++包  
 `ros2 pkg create <pkg-name> --dependencies [deps] --build-type ament_cmake`  
 显示创建Python包  
 `ros2 pkg create <pkg-name> --dependencies [deps] --build-type ament_python`

@@ -1,11 +1,11 @@
-shell A:
+shell A:  
 运行roscore
 
-shell B:
+shell B:  
 运行vrep: cd /vrep   ./vrep.sh
 
-shell C:
-配置ros2环境： . /opt/ros/dashing/setup.bash
+shell C:  
+配置ros2环境： . /opt/ros/dashing/setup.bash  
 启动ros_ros2_bridge: ros2 run ros1_bridge dynamic_bridge
 
 rostopic list

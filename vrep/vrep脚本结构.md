@@ -1,6 +1,6 @@
-# sysCall_init()
-1. 检查RosInterface接口是否正常工作：  
+# 1. 检查RosInterface接口是否正常工作：  
 ```
+sysCall_init()
 -- Check if the required ROS plugin is there:
     moduleName=0
     moduleVersion=0
@@ -14,14 +14,14 @@
         index=index+1
     end
 ```
-2. 获取vrep中对象的句柄：  
+# 2. 获取vrep中对象的句柄：  
 ```
 robotHandle=sim.getObjectAssociatedWithScript(sim.handle_self) -- 与当前脚本相关联的对象
     leftMotor=sim.getObjectHandle("rosInterfaceControlledBubbleRobLeftMotor") -- Handle of the left motor
     rightMotor=sim.getObjectHandle("rosInterfaceControlledBubbleRobRightMotor") -- Handle of the right motor
     noseSensor=sim.getObjectHandle("rosInterfaceControlledBubbleRobSensingNose") -- Handle of the proximity sensor
 ```
-3. 建立消息的发布者和订阅者以及启动ROS节点：  
+# 3. 建立消息的发布者和订阅者以及启动ROS节点：  
 ```
 -- Ok now launch the ROS client application:
 if (not pluginNotFound) then
@@ -41,8 +41,9 @@ else
     print("<font color='#F00'>ROS interface was not found. Cannot run.</font>@html")
 end
 ```
-4.编写功能函数（回调函数、位置转换函数）：  
-```回调函数
+# 4.编写功能函数（回调函数、位置转换函数）：  
+回调函数  
+```
 function setLeftMotorVelocity_cb(msg)
     -- Left motor speed subscriber callback
     sim.setJointTargetVelocity(leftMotor,msg.data)
@@ -53,7 +54,8 @@ function setRightMotorVelocity_cb(msg)
     sim.setJointTargetVelocity(rightMotor,msg.data)
 end
 ```
-```位置转换函数
+位置转换函数  
+```
 function getTransformStamped(objHandle,name,relTo,relToName)
     t=sim.getSystemTime()
     p=sim.getObjectPosition(objHandle,relTo)
@@ -71,7 +73,8 @@ function getTransformStamped(objHandle,name,relTo,relToName)
     }
 end
 ```
-```功能函数
+功能函数  
+```
 function sysCall_actuation()
     -- Send an updated sensor and simulation time message, and send the transform of the robot:
     if not pluginNotFound then
@@ -86,7 +89,7 @@ function sysCall_actuation()
     end
 end
 ```
-5. 清理函数（非必须函数）:  
+#　5. 清理函数（非必须函数）:  
 ```
 function sysCall_cleanup()
     if not pluginNotFound then

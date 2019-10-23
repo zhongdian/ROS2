@@ -45,7 +45,7 @@ target_include_directories(my_target
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
     $<INSTALL_INTERFACE:include>)
 ```
-上述代码将在编译期间将`${CMAKE_CURRENT_SOURCE_DIR}/include`的文件添加到公共接口
+上述代码将在编译期间将`${CMAKE_CURRENT_SOURCE_DIR}/include`的文件添加到公共接口  
 在安装期间将include文件（相对于`${CMAKE_INSTALL_DIR}`）添加到公共接口  
 ```
 ament_export_interfaces(export_my_library HAS_LIBRARY_TARGET)

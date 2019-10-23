@@ -11,11 +11,14 @@
 也可以在package.xml文件中修改依赖  
 # 注释  
 ## C++包
+使用上面命令生成ROS2包时会同时生成俩个文件：package.xml和CMakeLists.txt  
+在package.xml中包含所有的依赖和必须的一点元数据  
+
 在CMakeLists.txt中  
-### 抬头：  
+### 抬头  
 ```
 cmake_minimum_required(VERSION 3.5)
-project(**project_name**)
+project(project_name)
 ```  
 ### Default to C++14
 ```
@@ -34,7 +37,38 @@ find_package(example_interfaces REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(rclcpp_action REQUIRED)
 ```  
-### 创建可执行节点和链接依赖项
+### 构建库和可执行节点以及链接依赖项
+#### 构建库
+```
+target_include_directories(my_target
+  PUBLIC
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+    $<INSTALL_INTERFACE:include>)
+```
+上述代码将在编译期间将`${CMAKE_CURRENT_SOURCE_DIR}/include`的文件添加到公共接口
+在安装期间将include文件（相对于`${CMAKE_INSTALL_DIR}`）添加到公共接口  
+```
+ament_export_interfaces(export_my_library HAS_LIBRARY_TARGET)
+ament_export_dependencies(some_dependency)
+
+install(
+  DIRECTORY include/
+  DESTINATION include
+)
+
+install(
+  TARGETS my_library
+  EXPORT export_my_library
+  LIBRARY DESTINATION lib
+  ARCHIVE DESTINATION lib
+  RUNTIME DESTINATION bin
+  INCLUDES DESTINATION include
+)
+```  
+`ament_export_interfaces(export_my_library HAS_LIBRARY_TARGET)`宏将导出CMake的目标，这是允许库的客户端使用`target_link_libraries(client my_library::my_library)`所必须的语法  
+`ament_export_dependencies`为下游软件包导出依赖项，这样库的客户端就不必再寻找依赖  
+第一个install命令安装头文件，这些头文件可供客户端使用  
+第二个install命令将安装库。这些文件将被导出到lib文件夹。运行二进制文件时将被安装到bin文件夹下
 ```
 add_executable(action_client_member_functions member_functions.cpp)
 ament_target_dependencies(<executable-name> [dependencies])

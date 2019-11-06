@@ -12,9 +12,21 @@ apt show	apt-cache show	显示安装细节
 
 git checkout 检查克隆分支
 vscode配置git免密上传
+配置完SSH后
 打开隐藏文件夹.git里面的config
-将url中的https://github.com/zhongdian/ROS2.git更换为https://zhongdian:xlygh2718134336@github.com/zhongdian/ROS2.git
-
+将url中的https://github.com/zhongdian/ROS2.git更换为git@github.com:zhongdian/ROS2.git  
+[core]  
+	repositoryformatversion = 0  
+	filemode = true  
+	bare = false  
+	logallrefupdates = true  
+[remote "origin"]  
+	url = git@github.com:zhongdian/ROS2.git  
+	fetch = +refs/heads/*:refs/remotes/origin/*  
+[branch "master"]  
+	remote = origin  
+	merge = refs/heads/master  
+    
 ROS1循环发布消息 rostopic pub –r rate-in-hz topic-name message-type message-content 
 colcon build --symlink-install 编译包
 colcon test 测试包

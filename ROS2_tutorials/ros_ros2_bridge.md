@@ -12,33 +12,34 @@ For efficiency reasons, topics will only be bridged when matching publisher-subs
 https://github.com/ros2/ros1_bridge/blob/master/README.md
 
 # 安装ros2
-* 下载ros1_bridge源码到工作空间
+* 下载ros1_bridge源码到工作空间`git clone https://github.com/zhongdian/ros1_bridge.git`
 
+* 在workspace/src目录下编译  
 * 用colcon编译除ros1_bridge的其他包：
-colcon build --symlink-install --packages-skip ros1_bridge
+`colcon build --symlink-install --packages-skip ros1_bridge`
 
-* 配置ros1环境：source /opt/ros/melodic/setup.bash
+* 配置ros1环境：`source /opt/ros/melodic/setup.bash`
 
-* 配置ros2环境： . /opt/ros/dashing/local_setup.bash
+* 配置ros2环境： `. /opt/ros/dashing/local_setup.bash`
 
-* ~~如果有一个ROS1覆盖环境： . <install-space-to-ros1-overlay-ws>/setup.bash~~
+* ~~如果有一个ROS1覆盖环境： `. <install-space-to-ros1-overlay-ws>/setup.bash`~~
 
-* ~~如果有一个ROS2覆盖环境： . <install-space-to-ros2-overlay-ws>/local_setup.bash~~
+* ~~如果有一个ROS2覆盖环境： `. <install-space-to-ros2-overlay-ws>/local_setup.bash`~~
 
-* 再编译ros1_bridge: colcon build --symlink-install --packages-select ros1_bridge --cmake-force-configure
+* 再编译ros1_bridge: `colcon build --symlink-install --packages-select ros1_bridge --cmake-force-configure`差不多需要十分钟  
 
-**注意：如果编译报错：not found launch_testing_ament_cmake ,去github上下载ros2/launch里面的文件到工作空间中：git clone https://github.com/ros2/launch.git，从头开始编译，即可解决**
+**注意：如果编译报错：not found launch_testing_ament_cmake ,去github上下载ros2/launch里面的文件到workspace/src中：`git clone https://github.com/ros2/launch.git`，从头开始编译，即可解决**
 
 
 * shell A:
-配置ros1环境： . /opt/ros/melodic/setup.bash
-启动roscore: roscore (-p 11311)记住ROS_MASTER_URI:11311
+配置ros1环境： `. /opt/ros/melodic/setup.bash`
+启动roscore: `roscore` (-p 11311)记住ROS_MASTER_URI:11311
 
 * shell B:
-~~配置ros1环境： . /opt/ros/melodic/setup.bash~~
-配置ros2环境： . /opt/ros/dashing/setup.bash
-启动桥： export ROS_MASTER_URI=http://localhost:11311
-       ros2 run ros1_bridge dynamic_bridge
+~~配置ros1环境： `. /opt/ros/melodic/setup.bash`~~
+配置ros2环境： `. /opt/ros/dashing/setup.bash`
+启动桥： `export ROS_MASTER_URI=http://localhost:11311`
+       `ros2 run ros1_bridge dynamic_bridge`
 
 配置完成。
 

@@ -10,6 +10,12 @@ apt search	apt-cache search	搜索应用程序
 apt show	apt-cache show	显示安装细节
 
 
+双系统同步时间：
+ubuntu：
+sudo apt-get install ntpdate
+sudo ntpdate time.windows.com
+sudo hwclock --localtime --systohc
+
 git checkout 检查克隆分支
 vscode配置git免密上传
 配置完SSH后

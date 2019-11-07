@@ -12,9 +12,11 @@ For efficiency reasons, topics will only be bridged when matching publisher-subs
 https://github.com/ros2/ros1_bridge/blob/master/README.md
 
 # 安装ros2
-* 下载ros1_bridge源码到工作空间`git clone https://github.com/zhongdian/ros1_bridge.git`
+* 导入ros2环境设置  
+* 下载ros1_bridge源码到workspace/src`git clone https://github.com/zhongdian/ros1_bridge.git`
+* 下载缺少的配置文件到workspace/src  
 
-* 在workspace/src目录下编译  
+* 在workspace目录下编译  
 * 用colcon编译除ros1_bridge的其他包：
 `colcon build --symlink-install --packages-skip ros1_bridge`
 

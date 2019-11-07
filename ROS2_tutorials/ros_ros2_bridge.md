@@ -39,7 +39,8 @@ https://github.com/ros2/ros1_bridge/blob/master/README.md
 
 * shell B:  
 ~~配置ros1环境： `. /opt/ros/melodic/setup.bash`~~  
-配置ros2环境： `. /opt/ros/dashing/setup.bash`  
+~~配置ros2环境： `. /opt/ros/dashing/setup.bash`~~  
+导入桥所在包的设置环境：`source ~/workspace/install/local_setup.bash`  
 启动桥： `export ROS_MASTER_URI=http://localhost:11311`  
        `ros2 run ros1_bridge dynamic_bridge`  
 

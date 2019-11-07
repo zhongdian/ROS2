@@ -13,7 +13,7 @@ https://github.com/ros2/ros1_bridge/blob/master/README.md
 
 # 安装ros2
 * 导入ros2环境设置:`. /opt/ros/dashing/setup.bash`  
-* 下载ros1_bridge源码到workspace/src:`git clone https://github.com/zhongdian/ros1_bridge.git`
+* 下载ros1_bridge源码到workspace/src:`git clone -b dashing https://github.com/zhongdian/ros1_bridge.git`
 * 下载缺少的配置文件到workspace/src:`git clone https://github.com/zhongdian/ros_bridge_file.git`  
 
 * 在workspace目录下编译  

@@ -14,7 +14,7 @@ https://github.com/ros2/ros1_bridge/blob/master/README.md
 # 安装ros2
 * 导入ros2环境设置:`. /opt/ros/dashing/setup.bash`  
 * 下载ros1_bridge源码到workspace/src:`git clone -b dashing https://github.com/zhongdian/ros1_bridge.git`
-* 下载缺少的配置文件到workspace/src:`git clone https://github.com/zhongdian/ros_bridge_file.git`  
+* ~~下载缺少的配置文件到workspace/src:`git clone https://github.com/zhongdian/ros_bridge_file.git`~~  
 
 * 在workspace目录下编译  
 * 用colcon编译除ros1_bridge的其他包：
@@ -30,7 +30,7 @@ https://github.com/ros2/ros1_bridge/blob/master/README.md
 
 * 再编译ros1_bridge: `colcon build --symlink-install --packages-select ros1_bridge --cmake-force-configure`差不多需要十分钟  
 
-**注意：如果编译报错：not found launch_testing_ament_cmake ,去github上下载ros2/launch里面的文件到workspace/src中：`git clone https://github.com/ros2/launch.git`，从头开始编译，即可解决**
+**注意：如果编译报错：not found launch_testing_ament_cmake ,则直接`sudo apt install ros-dashing-launch-testing-ament-cmake`即可解决。**  
 
 
 * shell A:  

@@ -12,9 +12,9 @@ For efficiency reasons, topics will only be bridged when matching publisher-subs
 https://github.com/ros2/ros1_bridge/blob/master/README.md
 
 # 安装ros2
-* 导入ros2环境设置  
+* 导入ros2环境设置:`. /opt/ros/dashing/setup.bash`  
 * 下载ros1_bridge源码到workspace/src`git clone https://github.com/zhongdian/ros1_bridge.git`
-* 下载缺少的配置文件到workspace/src  
+* 下载缺少的配置文件到workspace/src`git clone https://github.com/zhongdian/ros_bridge_file.git`  
 
 * 在workspace目录下编译  
 * 用colcon编译除ros1_bridge的其他包：
@@ -33,63 +33,63 @@ https://github.com/ros2/ros1_bridge/blob/master/README.md
 **注意：如果编译报错：not found launch_testing_ament_cmake ,去github上下载ros2/launch里面的文件到workspace/src中：`git clone https://github.com/ros2/launch.git`，从头开始编译，即可解决**
 
 
-* shell A:
-配置ros1环境： `. /opt/ros/melodic/setup.bash`
-启动roscore: `roscore` (-p 11311)记住ROS_MASTER_URI:11311
+* shell A:  
+配置ros1环境： `. /opt/ros/melodic/setup.bash`  
+启动roscore: `roscore` (-p 11311)记住ROS_MASTER_URI:11311  
 
-* shell B:
-~~配置ros1环境： `. /opt/ros/melodic/setup.bash`~~
-配置ros2环境： `. /opt/ros/dashing/setup.bash`
-启动桥： `export ROS_MASTER_URI=http://localhost:11311`
-       `ros2 run ros1_bridge dynamic_bridge`
+* shell B:  
+~~配置ros1环境： `. /opt/ros/melodic/setup.bash`~~  
+配置ros2环境： `. /opt/ros/dashing/setup.bash`  
+启动桥： `export ROS_MASTER_URI=http://localhost:11311`  
+       `ros2 run ros1_bridge dynamic_bridge`  
 
 配置完成。
 
 # 实例
 * **实例1a：ROS 1 talker and ROS 2 listener**
 
-shell C:
-配置ros1环境： . /opt/ros/melodic/setup.bash
-运行ros1节点： rosrun rospy_tutorials talker
+shell C:  
+配置ros1环境： `. /opt/ros/melodic/setup.bash`  
+运行ros1节点： `rosrun rospy_tutorials talker`    
 
-shell D:
-配置ros2环境：. /opt/ros/dashing/setup.bash
-运行ros2节点： ros2 run demo_nodes_cpp listener
+shell D:  
+配置ros2环境：`. /opt/ros/dashing/setup.bash`  
+运行ros2节点： `ros2 run demo_nodes_cpp listener`  
 
 * **实例1b：ROS 2 talker and ROS 1 listener**
 
-shell C：
-配置ros1环境： . /opt/ros/melodic/setup.bash
-运行ros1节点： rosrun roscpp_tutorials listener
+shell C：  
+配置ros1环境： `. /opt/ros/melodic/setup.bash`  
+运行ros1节点： `rosrun roscpp_tutorials listener`  
 
-shell D:
-配置ros2环境：. /opt/ros/dashing/setup.bash
-运行ros2节点： ros2 run demo_nodes_py talker
+shell D:  
+配置ros2环境：`. /opt/ros/dashing/setup.bash`  
+运行ros2节点： `ros2 run demo_nodes_py talker`  
 
 * **实例2：run the bridge and exchange images**
 
-shell C：
-配置ros1环境： . /opt/ros/melodic/setup.bash
-运行ros1节点： rqt_image_view /image
+shell C：  
+配置ros1环境： `. /opt/ros/melodic/setup.bash`  
+运行ros1节点： `rqt_image_view /image`  
 
-shell D:
-配置ros2环境：. /opt/ros/dashing/setup.bash
-运行ros2节点： ros2 run image_tools cam2image
+shell D:  
+配置ros2环境：`. /opt/ros/dashing/setup.bash`  
+运行ros2节点： `ros2 run image_tools cam2image`  
 
-shell E:
-配置ros1环境： . /opt/ros/melodic/setup.bash
-发布消息： rostopic pub -r 1 /flip_image std_msgs/Bool "{data: true}"
-         rostopic pub -r 1 /flip_image std_msgs/Bool "{data: false}"
+shell E:  
+配置ros1环境： `. /opt/ros/melodic/setup.bash`  
+发布消息： `rostopic pub -r 1 /flip_image std_msgs/Bool "{data: true}"`  
+         `rostopic pub -r 1 /flip_image std_msgs/Bool "{data: false}"`  
 
 * **实例3： run the bridge for AddTwoInts service**
 
-shell C:
-配置ros1环境： . /opt/ros/melodic/setup.bash
-~~export ROS_MASTER_URI=http://localhost:11311~~
-运行ros1节点： rosrun roscpp_tutorials add_two_ints_server
+shell C:  
+配置ros1环境： `. /opt/ros/melodic/setup.bash`  
+~~export ROS_MASTER_URI=http://localhost:11311~~  
+运行ros1节点： `rosrun roscpp_tutorials add_two_ints_server`  
 
-shell D:
-配置ros2环境：. /opt/ros/dashing/setup.bash
-运行ros2节点： ros2 run demo_nodes_cpp add_two_ints_client
+shell D:  
+配置ros2环境：`. /opt/ros/dashing/setup.bash`  
+运行ros2节点： `ros2 run demo_nodes_cpp add_two_ints_client`  
 
 

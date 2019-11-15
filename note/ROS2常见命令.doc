@@ -1,39 +1,10 @@
-apt 命令	取代的命令	命令的功能
-apt install	apt-get install	安装软件包
-apt remove	apt-get remove	移除软件包
-apt purge	apt-get purge	移除软件包及配置文件
-apt update	apt-get update	刷新存储库索引
-apt upgrade	apt-get upgrade	升级所有可升级的软件包
-apt autoremove	apt-get autoremove	自动删除不需要的包
-apt full-upgrade	apt-get dist-upgrade	在升级软件包时自动处理依赖关系
-apt search	apt-cache search	搜索应用程序
-apt show	apt-cache show	显示安装细节
+markdown的写法：
+https://www.cnblogs.com/liugang-vip/p/6337580.html
+https://www.bbsmax.com/A/E35pglrgJv/
 
 
-双系统同步时间：
-ubuntu：
-sudo apt-get install ntpdate
-sudo ntpdate time.windows.com
-sudo hwclock --localtime --systohc
 
-git checkout 检查克隆分支
-vscode配置git免密上传
-配置完SSH后
-打开隐藏文件夹.git里面的config
-将url中的https://github.com/zhongdian/ROS2.git更换为git@github.com:zhongdian/ROS2.git  
-[core]  
-	repositoryformatversion = 0  
-	filemode = true  
-	bare = false  
-	logallrefupdates = true  
-[remote "origin"]  
-	url = git@github.com:zhongdian/ROS2.git  
-	fetch = +refs/heads/*:refs/remotes/origin/*  
-[branch "master"]  
-	remote = origin  
-	merge = refs/heads/master  
-    
-ROS1循环发布消息 rostopic pub –r rate-in-hz topic-name message-type message-content 
+ROS2：
 colcon build --symlink-install 编译包
 colcon test 测试包
 
@@ -42,23 +13,18 @@ If you want to avoid configuring and building tests in CMake packages you can pa
 If you want to run a single particular test from a package:
 
 colcon test --packages-select YOUR_PKG_NAME --ctest-args -R YOUR_TEST_IN_PKG
-markdown的写法：https://www.cnblogs.com/liugang-vip/p/6337580.html
-https://www.bbsmax.com/A/E35pglrgJv/
 
-1.安装并添加源
-sudo gedit /etc/apt/sources.list
-更新下
-sudo apt-get update
-添加 sources.list，如
-sudo sh -c '. /etc/lsb-release && echo "deb http://mirrors.ustc.edu.cn/ros/ubuntu/ $DISTRIB_CODENAME main" > /etc/apt/sources.list.d/ros-latest.list'
-添加 keys，如
-sudo apt-key adv --keyserver hkp://pool.sks-keyservers.net --recv-key 421C365BD9FF1F717815A3895523BAEEB01FA116
+安装某个指定的ROS软件包
+sudo apt-get install ros-dashing-PACKAGE
 
-2.安装某个指定的ROS软件包
-sudo apt-get install ros-indigo-PACKAGE
+要查找可用软件包:
+apt search ros-dashing
 
-3.要查找可用软件包:
-apt-cache search ros-indigo
+检查依赖：从工作空间的根目录（~/dev_ws）：运行以下命令
+sudo rosdep install -i --from-path src --rosdistro <distro> -y
+
+ROS1：
+ROS1循环发布消息 rostopic pub –r rate-in-hz topic-name message-type message-content 
 查看软件包列表和定位软件包:
 rospack list
 查看软件包目录下的文件:
@@ -66,14 +32,14 @@ rosls package-name
 将当前目录切换至此软件包目录:
 roscd package-name
 
-4.环境变量设置
+环境变量设置
 ROS环境变量都能够自动配置好（即添加到bash会话中）,配置好后，source一下.
 $echo "source /opt/ros/indigo/setup.bash" >> ~/.bashrc
 $source ~/.bashrc
 只改变当前终端下的环境变量:
 source /opt/ros/indigo/setup.bash
 
- 5.创建并构建工作空间
+创建并构建工作空间
 创建一个工作空间：
 mkdir -p ~/catkin_ws/src
 转到已创建好的工作空间之下:
@@ -85,7 +51,6 @@ catkin_make
 source devel/setup.bash
 要想保证工作空间已配置正确需确保ROS_PACKAGE_PATH环境变量包含你的工作空间目录，采用以下命令查看
  echo $ROS_PACKAGE_PATH
-
 
 6.获取软件包的有关信息
 rospack find [包名称]

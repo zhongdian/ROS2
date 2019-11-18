@@ -23,6 +23,18 @@ apt search ros-dashing
 检查依赖：从工作空间的根目录（~/dev_ws）：运行以下命令
 sudo rosdep install -i --from-path src --rosdistro <distro> -y
 
+其他有用的参数：colcon build
+--packages-up-to 构建你想的程序包，及其所有依赖项，但不构建整个工作区（节省时间）
+--symlink-install 使您无需在每次调整python脚本时都进行重建
+--event-handlers console-direct+在构建时显示控制台输出（否则可以在log目录中找到）
+
+建立一个ROS2包
+ros2 pkg create --build-type ament_cmake --node-name my_node my_package
+ros2 pkg create --build-type ament_python --node-name my_node my_package
+
+编译指定的ROS2包
+colcon build --packages-select my_package
+
 ROS1：
 ROS1循环发布消息 rostopic pub –r rate-in-hz topic-name message-type message-content 
 查看软件包列表和定位软件包:

@@ -95,6 +95,15 @@ install(
   DESTINATION lib/${PROJECT_NAME}
 )
 ```  
+#### Install components  
+```
+add_library(talker_component SHARED
+   src/talker_component.cpp)
+rclcpp_components_register_nodes(talker_component "composition::Talker")
+# To register multiple components in the same shared library, use multiple calls
+# rclcpp_components_register_nodes(talker_component "composition::Talker2")
+```
+`https://index.ros.org/doc/ros2/Tutorials/Composition/`
 ### 收尾
 `ament_package()`
 ## Python包

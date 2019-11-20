@@ -42,3 +42,4 @@ def generate_launch_description():
             node_name=[launch.substitutions.LaunchConfiguration('node_prefix'), 'talker']),
     ])
 ~~~
+`https://index.ros.org/doc/ros2/Tutorials/Launch-files-migration-guide/`

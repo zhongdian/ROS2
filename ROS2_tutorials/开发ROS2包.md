@@ -8,6 +8,13 @@
 显式创建Python包  
 `ros2 pkg create <pkg-name> --dependencies [deps] --build-type ament_python`
 
+建立一个ROS2包  
+`ros2 pkg create --build-type ament_cmake --node-name my_node my_package`  
+`ros2 pkg create --build-type ament_python --node-name my_node my_package`
+
+编译指定的ROS2包  
+`colcon build --packages-select my_package`  
+
 也可以在package.xml文件中修改依赖  
 # 注释  
 ## C++包

@@ -43,6 +43,7 @@ find_package(ament_cmake REQUIRED)
 find_package(example_interfaces REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(rclcpp_action REQUIRED)
+find_package(rosidl_default_generators REQUIRED)
 ```  
 ### 构建库和可执行节点以及链接依赖项
 #### 构建库
@@ -160,4 +161,23 @@ setup(
         ],
     },
 )
+```
+创建自定义消息则需要创建完消息后需要在CMakeList.txt中添加以下代码：  
+```
+find_packages(rosidl_default_generators REQUIRED)
+find_packages(builtin_interfaces REQUIRED)
+
+rosidl_generate_interfaces(${PROJECT_NAME}
+  "msg/message.msg"
+  "srv/srvice.srv"
+  DEPENDENCIES builtin_interfaces
+  "action/action.action"
+)
+```
+自定义消息的话package的格式必须是3，默认的话是2因为`<memeber_of_group>rosidl_interface_packages</member_of_group>`需要
+package.xml需要添加以下代码：  
+```
+<buildtool_depend>rosidl_default_generators</buildtool_depend>
+<depend>action_msg</depend>
+<member_of_group>rosild_interface_packages</member_of_group>
 ```

@@ -20,6 +20,8 @@ curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo ap
 将存储库添加到源列表中  
 ~~~
 sudo sh -c 'echo "deb [arch=amd64,arm64] http://packages.ros.org/ros2/ubuntu `lsb_release -cs` main" > /etc/apt/sources.list.d/ros2-latest.list'
+国内源：
+sudo sh -c 'echo "deb [arch=amd64,arm64] http://mirrors.tuna.tsinghua.edu.cn/ros2/ubuntu `lsb_release -cs` main" > /etc/apt/sources.list.d/ros2-latest.list'
 ~~~  
 
 ## 安装ROS2
